@@ -136,7 +136,7 @@ int AILIA_API ailiaFeatureExtractorCompute(struct AILIAFeatureExtractor* fextrac
  * @return
  *   If this function is successful, it returns  \ref AILIA_STATUS_SUCCESS , or an error code otherwise.
  */
-int AILIA_API ailiaFeatureExtractorMatch(struct AILIAFeatureExtractor* fextractor, float* distance, unsigned int distace_type, const void* feature1, unsigned int feature1_size, const void* feature2, unsigned int feature2_size);
+int AILIA_API ailiaFeatureExtractorMatch(struct AILIAFeatureExtractor* fextractor, float* distance, unsigned int distance_type, const void* feature1, unsigned int feature1_size, const void* feature2, unsigned int feature2_size);
 
 #ifdef __cplusplus
 }

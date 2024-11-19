@@ -14,6 +14,7 @@
 
 #ifndef INCLUDED_AILIA
 #define INCLUDED_AILIA
+#include <wchar.h>
 
 /* 呼び出し規約 */
 
@@ -132,16 +133,20 @@ extern "C" {
 #define AILIA_STATUS_INVALID_STATE (-7)
 /**
  * \~japanese
- * @def AILIA_STATUS_UNSUPPORT_NET
+ * @def AILIA_STATUS_UNSUPPORTED_NET
  * @brief 非対応のネットワーク
  * @remark
  * Detectorなどのラッパー関数に非対応のモデルファイルが渡されました。ドキュメント記載のサポートモデルかどうかを確認してください。
  *
  * \~english
- * @def AILIA_STATUS_UNSUPPORT_NET
+ * @def AILIA_STATUS_UNSUPPORTED_NET
  * @brief Unsupported network
  * @remark Non supported model file was passed to wrapper functions (e.g. Detector). Please check document whether
  * presented models are supported or not.
+ */
+#define AILIA_STATUS_UNSUPPORTED_NET (-9)
+/**
+ * Please use AILIA_STATUS_UNSUPPORTED_NET. This macro has been deprecated. It will be removed in a future version.
  */
 #define AILIA_STATUS_UNSUPPORT_NET (-9)
 /**
@@ -185,16 +190,20 @@ extern "C" {
 #define AILIA_STATUS_NOT_FOUND (-12)
 /**
  * \~japanese
- * @def AILIA_STATUS_GPU_UNSUPPORT_LAYER
+ * @def AILIA_STATUS_GPU_UNSUPPORTED_LAYER
  * @brief GPUで未対応のレイヤーパラメータが与えられた
  * @remark
  * GPUで実行できないレイヤーやパラメーターが与えられました。モデルファイルが正しいかどうかを確認した上で、ドキュメント記載のサポート窓口までお問い合わせください。
  *
  * \~english
- * @def AILIA_STATUS_GPU_UNSUPPORT_LAYER
+ * @def AILIA_STATUS_GPU_UNSUPPORTED_LAYER
  * @brief A layer parameter not supported by the GPU was given.
  * @remark The layer or parameter that not supported by the GPU was given. Please check model file are correct or not
  * and contact support desk that described on document.
+ */
+#define AILIA_STATUS_GPU_UNSUPPORTED_LAYER (-13)
+/**
+ * Please use AILIA_STATUS_GPU_UNSUPPORTED_LAYER. This macro has been deprecated. It will be removed in a future version.
  */
 #define AILIA_STATUS_GPU_UNSUPPORT_LAYER (-13)
 /**
@@ -342,7 +351,7 @@ extern "C" {
  * \~english
  * @def AILIA_STATUS_OTHER_ERROR
  * @brief Unknown error
- * @remark The misc error has been occured. Please call ailiaGetErrorDetail() and check detail message. And, please
+ * @remark The misc error has been occurred. Please call ailiaGetErrorDetail() and check detail message. And, please
  * contact support desk that described on document.
  */
 #define AILIA_STATUS_OTHER_ERROR (-128)
@@ -415,7 +424,8 @@ typedef struct _AILIAShape {
 #define AILIA_ENVIRONMENT_ID_AUTO (-1)
 
 /****************************************************************
- * ailiaGetBlobDataType で取得できる Tensor のデータ型
+ * 推論時の内部データ(Blob)の型
+ * ailiaGetBlobDataType で取得可能
  **/
 
 #define AILIA_DATATYPE_UNDEFINED 0
@@ -1537,7 +1547,7 @@ int AILIA_API ailiaGetEnvironmentCount(unsigned int* env_count);
 /**
  * \~japanese
  * @brief 計算環境の一覧を取得します
- * @param env 計算環境情報の格納先(AILIANetworkインスタンスを破棄するまで有効)
+ * @param env 計算環境情報の格納先(ライブラリを解放するまで有効)
  * @param env_idx 計算環境情報のインデックス(0～ ailiaGetEnvironmentCount() -1)
  * @param version AILIA_ENVIRONMENT_VERSION
  * @return
@@ -1545,8 +1555,7 @@ int AILIA_API ailiaGetEnvironmentCount(unsigned int* env_count);
  *
  * \~english
  * @brief Gets the list of computational environments.
- * @param env The storage location of the computational environment information (valid until the AILIANetwork instance
- * is destroyed)
+ * @param env The storage location of the computational environment information (Valid until the library is released)
  * @param env_idx The index of the computational environment information (0 to  ailiaGetEnvironmentCount() -1)
  * @param version AILIA_ENVIRONMENT_VERSION
  * @return
@@ -1558,7 +1567,7 @@ int AILIA_API ailiaGetEnvironment(AILIAEnvironment** env, unsigned int env_idx, 
  * \~japanese
  * @brief 選択された計算環境を取得します
  * @param net ネットワークオブジェクトポインタ
- * @param env 計算環境情報の格納先(AILIANetworkインスタンスを破棄するまで有効)
+ * @param env 計算環境情報の格納先(ライブラリを解放するまで有効)
  * @param version AILIA_ENVIRONMENT_VERSION
  * @return
  *   成功した場合は \ref AILIA_STATUS_SUCCESS 、そうでなければエラーコードを返す。
@@ -1566,8 +1575,7 @@ int AILIA_API ailiaGetEnvironment(AILIAEnvironment** env, unsigned int env_idx, 
  * \~english
  * @brief Gets the selected computational environment.
  * @param net A network instance pointer
- * @param env The storage location of the computational environment information (valid until the AILIANetwork instance
- * is destroyed)
+ * @param env The storage location of the computational environment information (Valid until the library is released)
  * @param version AILIA_ENVIRONMENT_VERSION
  * @return
  *   If this function is successful, it returns  \ref AILIA_STATUS_SUCCESS , or an error code otherwise.
@@ -1623,7 +1631,7 @@ int AILIA_API ailiaGetSelectedEnvironment(struct AILIANetwork* net, AILIAEnviron
 /**
  * \~japanese
  * mmapを利用し、重みをメモリに配置せずに推論する
- * 
+ *
  * 重みに対して変換が必要な場合、
  * 必要に応じて一時バッファーを利用し、不要になったタイミングで破棄します。
  * 利用可能な環境でファイルから重みを読み込んだ場合のみ適用されます。
@@ -1633,7 +1641,7 @@ int AILIA_API ailiaGetSelectedEnvironment(struct AILIANetwork* net, AILIAEnviron
  *
  * \~english
  * Infer with memory mapped file for weight due to reduce ram usage.
- * 
+ *
  * When need to convert weight, it will allocate temporary buffer and after infer, release buffer.
  * It will apply when load from file, and environment that mmap available.
  * It will create temporary file due to speedup mmap, so you should be call ailiaSetTemporaryCachePath.
