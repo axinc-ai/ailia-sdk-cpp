@@ -2,13 +2,13 @@
  * \~japanese
  * @file
  * @brief AILIA 骨格検出・顔特徴点検出ライブラリ
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  *
  * \~english
  * @file
  * @brief AILIA library for human pose estimation and human face landmarks extraction
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date July 28, 2021
  */
 #if !defined(INCLUDED_AILIA_POSE_ESTIMATOR)

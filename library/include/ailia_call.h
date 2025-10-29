@@ -2,7 +2,7 @@
  * \~japanese
  * @file ailia_call.h
  * @brief ユーザ定義コールバック
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  * @details
  * ファイルアクセスコールバック関数は、1ネットワークオブジェクトにつき、
@@ -15,7 +15,7 @@
  * \~english
  * @file ailia_call.h
  * @brief user-defined callback
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  * @details
  * The file access callback function is called by a single thread
@@ -37,11 +37,7 @@
 #define AILIA_USER_API
 #endif
 
-#ifdef __EMSCRIPTEN__
-#define AILIA_FSIZE_RETURN_TYPE int
-#else
 #define AILIA_FSIZE_RETURN_TYPE long long
-#endif
 
 /* ユーザ定義コールバックの返値 */
 /**

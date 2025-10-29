@@ -2,13 +2,13 @@
  * \~japanese
  * @file
  * @brief AILIA 物体検出ライブラリ
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  *
  * \~english
  * @file
  * @brief AILIA object detection library
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date July 28, 2021
  */
 #if !defined(INCLUDED_AILIA_DETECTOR)

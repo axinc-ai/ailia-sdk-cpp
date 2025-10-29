@@ -2,24 +2,20 @@
  * \~japanese
  * @file
  * @brief AILIA フォーマット定義・変換
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  *
  * \~english
  * @file
  * @brief AILIA format definition and conversion
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date July 28, 2021
  */
 #if !defined(INCLUDED_AILIA_FORMAT)
 #define INCLUDED_AILIA_FORMAT
 
 /* 呼び出し規約 */
-
-#if defined(_M_JS)
-#include <emscripten.h>
-#define AILIA_API EMSCRIPTEN_KEEPALIVE
-#elif defined(_WIN64) || defined(_M_X64) || defined(__amd64__) || defined(__x86_64__) || defined(__APPLE__) || \
+#if defined(_WIN64) || defined(_M_X64) || defined(__amd64__) || defined(__x86_64__) || defined(__APPLE__) || \
     defined(__ANDROID__) || defined(ANDROID) || defined(__linux__) || defined(NN_NINTENDO_SDK)
 #define AILIA_API
 #else
