@@ -2,13 +2,13 @@
  * \~japanese
  * @file
  * @brief AILIA 特徴抽出ライブラリ
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  *
  * \~english
  * @file
  * @brief AILIA feature extraction library
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date July 28, 2021
  */
 #if !defined(INCLUDED_AILIA_FEATURE_EXTRACTOR)

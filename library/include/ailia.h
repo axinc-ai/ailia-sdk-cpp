@@ -2,13 +2,13 @@
  * \~japanese
  * @file ailia.h
  * @brief 推論ライブラリ
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2023/05/26
  *
  * \~english
  * @file ailia.h
  * @brief inference library
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date May 26, 2023
  */
 
@@ -18,10 +18,7 @@
 
 /* 呼び出し規約 */
 
-#if defined(_M_JS)
-#include <emscripten.h>
-#define AILIA_API EMSCRIPTEN_KEEPALIVE
-#elif defined(_WIN64) || defined(_M_X64) || defined(__amd64__) || defined(__x86_64__) || defined(__APPLE__) || \
+#if defined(_WIN64) || defined(_M_X64) || defined(__amd64__) || defined(__x86_64__) || defined(__APPLE__) || \
     defined(__ANDROID__) || defined(ANDROID) || defined(__linux__) || defined(NN_NINTENDO_SDK)
 #define AILIA_API
 #else
@@ -1433,7 +1430,6 @@ int AILIA_API ailiaFinalize(void);
 #define AILIA_ENVIRONMENT_TYPE_CPU (0)
 #define AILIA_ENVIRONMENT_TYPE_BLAS (1)
 #define AILIA_ENVIRONMENT_TYPE_GPU (2)
-#define AILIA_ENVIRONMENT_TYPE_REMOTE (3)
 
 #define AILIA_ENVIRONMENT_BACKEND_NONE (0)
 #define AILIA_ENVIRONMENT_BACKEND_CUDA (2)

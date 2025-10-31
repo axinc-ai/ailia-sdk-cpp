@@ -2,13 +2,13 @@
  * \~japanese
  * @file ailia_classifier.h
  * @brief 物体識別ライブラリ
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  *
  * \~english
  * @file ailia_classifier.h
  * @brief object classification library
- * @copyright AXELL CORPORATION, ax Inc.
+ * @copyright AXELL CORPORATION, ailia Inc.
  * @date 2021/07/28
  */
 
